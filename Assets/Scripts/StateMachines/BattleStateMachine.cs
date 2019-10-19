@@ -23,6 +23,13 @@ public class BattleStateMachine : MonoBehaviour
 
     public GameObject AttackPanel;
     public GameObject EnemySelectPanel;
+    public GameObject MagicPanel;
+
+    // magic attacks
+    public Transform actionSpacer;
+    public Transform magicSpacer;
+    public GameObject actionButton;
+    
 
     public enum HeroGUI
     {

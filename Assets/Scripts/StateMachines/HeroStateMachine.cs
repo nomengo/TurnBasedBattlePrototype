@@ -23,18 +23,30 @@ public class HeroStateMachine : MonoBehaviour
     // ProgressBar
     private float cur_cooldown = 0f;
     private float max_cooldown = 5f;
-    public Image ProgressBar;
+    private Image ProgressBar;
+    //Selector
     public GameObject Selector;
-
+    //IeNumerator
     public GameObject EnemyToAttack;
     private bool actionStarted = false;
     private Vector3 startPosition;
     private float animSpeed = 10f;
+    //dead
     private bool alive = true;
+    //HeroPanel
+    private HeroPanelStats stats;
+    public GameObject HeroPanel;
+    private Transform HeroPanelSpacer;
 
 
     void Start()
     {
+        //find spacer
+        HeroPanelSpacer = GameObject.Find("BattleCanvas").transform.Find("HeroPanel").transform.Find("HeroPanelSpacer");
+        //create panel
+        CreateHeroPanel();
+       
+
         startPosition = transform.position;
         cur_cooldown = Random.Range(0, 2f);
         Selector.SetActive(false);
@@ -124,7 +136,7 @@ public class HeroStateMachine : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-        Debug.Log("ANAN ZAA");
+        
 
         Vector3 firstPosition = startPosition;
         while (MoveTowardsStart(firstPosition)) { yield return null; }
@@ -148,10 +160,27 @@ public class HeroStateMachine : MonoBehaviour
         hero.curHP -= getDamageAmount;
         if(hero.curHP <= 0)
         {
+            hero.curHP = 0;
             currentState = TurnState.Dead;
         }
+        UpdateHeroPanel();
     }
-       
+    void CreateHeroPanel()
+    {
+        HeroPanel = Instantiate(HeroPanel) as GameObject;
+        stats = HeroPanel.GetComponent<HeroPanelStats>();
+        stats.HeroName.text = hero.theName;
+        stats.HeroHP.text = "HP: " + hero.curHP;
+        stats.HeroMP.text = "MP " + hero.curMP;
 
+        ProgressBar = stats.ProgressBar;
+        HeroPanel.transform.SetParent(HeroPanelSpacer, false);
+    }
+    //update hero stats damage / heal
+    void UpdateHeroPanel()
+    {
+        stats.HeroHP.text = "HP: " + hero.curHP;
+        stats.HeroMP.text = "MP " + hero.curMP;
+    }
 
 }
