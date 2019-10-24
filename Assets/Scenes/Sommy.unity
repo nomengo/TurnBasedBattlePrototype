@@ -287,7 +287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 972224090, guid: 78282907b83c5664a9c29dee649d55fa, type: 3}
       propertyPath: hero.attacks.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 972224090, guid: 78282907b83c5664a9c29dee649d55fa, type: 3}
       propertyPath: hero.MagicAttacks.Array.size
@@ -363,6 +363,11 @@ PrefabInstance:
       propertyPath: hero.MagicAttacks.Array.data[1]
       value: 
       objectReference: {fileID: 5202731371946573714, guid: a585a27eb200b984e8bea6b4d889a4be,
+        type: 3}
+    - target: {fileID: 972224090, guid: 78282907b83c5664a9c29dee649d55fa, type: 3}
+      propertyPath: hero.attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 3608520591410534761, guid: 8bc0399db97a6f740ae59f9f0a7b5a73,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78282907b83c5664a9c29dee649d55fa, type: 3}
@@ -1104,6 +1109,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 972224090, guid: 78282907b83c5664a9c29dee649d55fa, type: 3}
+      propertyPath: hero.attacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 972224090, guid: 78282907b83c5664a9c29dee649d55fa, type: 3}
       propertyPath: ProgressBar
       value: 
       objectReference: {fileID: 0}
@@ -1173,6 +1182,16 @@ PrefabInstance:
       propertyPath: hero.MagicAttacks.Array.data[1]
       value: 
       objectReference: {fileID: 5202731371946573714, guid: a585a27eb200b984e8bea6b4d889a4be,
+        type: 3}
+    - target: {fileID: 972224090, guid: 78282907b83c5664a9c29dee649d55fa, type: 3}
+      propertyPath: hero.attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 3608520591410534761, guid: 8bc0399db97a6f740ae59f9f0a7b5a73,
+        type: 3}
+    - target: {fileID: 972224090, guid: 78282907b83c5664a9c29dee649d55fa, type: 3}
+      propertyPath: hero.attacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 167293396489252535, guid: 2d7cdb601f05daf4a8a19fe48e61f56f,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78282907b83c5664a9c29dee649d55fa, type: 3}

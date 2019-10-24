@@ -103,7 +103,7 @@ public class HeroStateMachine : MonoBehaviour
                     //change color / play animation
                     this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
                     //reset heroinput
-                    BSM.HeroInput = BattleStateMachine.HeroGUI.Activate;
+                    BSM.BattleStates = BattleStateMachine.PerformAction.CheckAlive;
                     alive = false;
                 }
 
@@ -127,23 +127,27 @@ public class HeroStateMachine : MonoBehaviour
             yield break;
         }
         actionStarted = true;
-
+        //animate the enemy near to the hero to attack
         Vector3 enemyPosition = new Vector3(EnemyToAttack.transform.position.x + 1.5f, EnemyToAttack.transform.position.y, EnemyToAttack.transform.position.z);
 
         while (MoveTowardsEnemy(enemyPosition))
         {
             yield return null;
         }
-
+        // wait a bit
         yield return new WaitForSeconds(1f);
-        
-
+        // do damage
+        DoDamage();
+        //animate back to the start position
         Vector3 firstPosition = startPosition;
         while (MoveTowardsStart(firstPosition)) { yield return null; }
-
+        // remove this performer from the list in BSM
         BSM.PerformList.RemoveAt(0);
+        // reset BSM -> wait
         BSM.BattleStates = BattleStateMachine.PerformAction.Wait;
+        // end coroutine
         actionStarted = false;
+        // reset this enemy state
         cur_cooldown = 0f;
         currentState = TurnState.Processing;
     }
@@ -165,6 +169,14 @@ public class HeroStateMachine : MonoBehaviour
         }
         UpdateHeroPanel();
     }
+    // do damage
+    void DoDamage()
+    {
+        float calc_damage = hero.curATK + BSM.PerformList[0].choosenAttack.attackDamage;
+        EnemyToAttack.GetComponent<EnemyStateMachine>().TakeDamage(calc_damage);
+        Debug.Log("Saldır küheylan");
+    }
+    // create a hero panel
     void CreateHeroPanel()
     {
         HeroPanel = Instantiate(HeroPanel) as GameObject;
