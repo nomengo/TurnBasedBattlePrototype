@@ -93,11 +93,18 @@ public class HeroStateMachine : MonoBehaviour
                     BSM.AttackPanel.SetActive(false);
                     BSM.EnemySelectPanel.SetActive(false);
                     //remove item from performlist
-                    for(int i = 0; i <BSM.PerformList.Count; i++)
+                    if (BSM.HerosInBattle.Count > 0)
                     {
-                        if(BSM.PerformList[i].AttackersGameObject == this.gameObject)
+                        for (int i = 0; i < BSM.PerformList.Count; i++)
                         {
-                            BSM.PerformList.Remove(BSM.PerformList[i]);
+                            if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
+                            {
+                                BSM.PerformList.Remove(BSM.PerformList[i]);
+                            }
+                            if (BSM.PerformList[i].AttackersTarget == this.gameObject)
+                            {
+                                BSM.PerformList[i].AttackersTarget = BSM.HerosInBattle[Random.Range(0, BSM.HerosInBattle.Count)];
+                            }
                         }
                     }
                     //change color / play animation
@@ -144,12 +151,19 @@ public class HeroStateMachine : MonoBehaviour
         // remove this performer from the list in BSM
         BSM.PerformList.RemoveAt(0);
         // reset BSM -> wait
-        BSM.BattleStates = BattleStateMachine.PerformAction.Wait;
-        // end coroutine
-        actionStarted = false;
-        // reset this enemy state
-        cur_cooldown = 0f;
-        currentState = TurnState.Processing;
+        if (BSM.BattleStates != BattleStateMachine.PerformAction.Win && BSM.BattleStates != BattleStateMachine.PerformAction.Lose)
+        {
+            BSM.BattleStates = BattleStateMachine.PerformAction.Wait;
+            // end coroutine
+            actionStarted = false;
+            // reset this enemy state
+            cur_cooldown = 0f;
+            currentState = TurnState.Processing;
+        }
+        else
+        {
+            currentState = TurnState.Waiting;
+        }
     }
     private bool MoveTowardsEnemy(Vector3 target)
     {
@@ -174,7 +188,7 @@ public class HeroStateMachine : MonoBehaviour
     {
         float calc_damage = hero.curATK + BSM.PerformList[0].choosenAttack.attackDamage;
         EnemyToAttack.GetComponent<EnemyStateMachine>().TakeDamage(calc_damage);
-        Debug.Log("Saldır küheylan");
+        Debug.Log("ANANNNNNNNNNNNNNNNNNNNN");
     }
     // create a hero panel
     void CreateHeroPanel()
@@ -183,7 +197,7 @@ public class HeroStateMachine : MonoBehaviour
         stats = HeroPanel.GetComponent<HeroPanelStats>();
         stats.HeroName.text = hero.theName;
         stats.HeroHP.text = "HP: " + hero.curHP;
-        stats.HeroMP.text = "MP " + hero.curMP;
+        stats.HeroMP.text = "MP: " + hero.curMP;
 
         ProgressBar = stats.ProgressBar;
         HeroPanel.transform.SetParent(HeroPanelSpacer, false);
@@ -192,7 +206,7 @@ public class HeroStateMachine : MonoBehaviour
     void UpdateHeroPanel()
     {
         stats.HeroHP.text = "HP: " + hero.curHP;
-        stats.HeroMP.text = "MP " + hero.curMP;
+        stats.HeroMP.text = "MP: " + hero.curMP;
     }
 
 }

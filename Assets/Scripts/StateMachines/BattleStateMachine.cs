@@ -28,13 +28,15 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject EnemySelectPanel;
     public GameObject MagicPanel;
 
-    // magic attacks
+    // attacks of heroes
     public Transform actionSpacer;
     public Transform magicSpacer;
     public GameObject actionButton;
     public GameObject magicButton;
     private List<GameObject> atkBtns = new List<GameObject>();
-    
+
+    //enemy buttons
+    private List<GameObject> enemyBtns = new List<GameObject>();
 
     public enum HeroGUI
     {
@@ -127,12 +129,16 @@ public class BattleStateMachine : MonoBehaviour
                 break;
             case (PerformAction.Lose):
                 {
-
+                    Debug.Log("KAYBETTİN");
                 }
                 break;
             case (PerformAction.Win):
                 {
-
+                    Debug.Log("KAZANDIN");
+                    for(int i = 0; i < HerosInBattle.Count; i++)
+                    {
+                        HerosInBattle[i].GetComponent<HeroStateMachine>().currentState = HeroStateMachine.TurnState.Waiting;
+                    }
                 }
                 break;
         }
@@ -164,8 +170,15 @@ public class BattleStateMachine : MonoBehaviour
     {
         PerformList.Add(input);
     }
-    void EnemyButtons()
+    public void EnemyButtons()
     {
+        // cleanup
+        foreach(GameObject enemyBtn in enemyBtns)
+        {
+            Destroy(enemyBtn);
+        }
+        enemyBtns.Clear();
+        // create buttons
         foreach (GameObject enemy in EnemysInBattle)
         {
             GameObject newButton = Instantiate(enemyButton) as GameObject;
@@ -179,6 +192,7 @@ public class BattleStateMachine : MonoBehaviour
             button.EnemyPrefab = enemy;
 
             newButton.transform.SetParent(Spacer, false);
+            enemyBtns.Add(newButton);
 
         }
     }

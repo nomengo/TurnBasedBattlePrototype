@@ -27,6 +27,8 @@ public class EnemyStateMachine : MonoBehaviour
     public GameObject HeroToAttack;
     private float animSpeed = 10f;
     public GameObject Selector;
+    //alive
+    private bool alive = true;
 
     void Start()
     {
@@ -56,7 +58,42 @@ public class EnemyStateMachine : MonoBehaviour
                 StartCoroutine(TimeForAction());
                 break;
             case (TurnState.Dead):
-
+                if (!alive)
+                {
+                    return;
+                }
+                else
+                {
+                    //change the tag of the enemy
+                    this.gameObject.tag = "DeadEnemy";
+                    //not attackable by heroes
+                    BSM.EnemysInBattle.Remove(this.gameObject);
+                    //disable the selector
+                    Selector.SetActive(false);
+                    //remove all inputs enemyattacks
+                    if (BSM.EnemysInBattle.Count > 0)
+                    {
+                        for (int i = 0; i < BSM.PerformList.Count; i++)
+                        {
+                            if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
+                            {
+                                BSM.PerformList.Remove(BSM.PerformList[i]);
+                            }
+                            if (BSM.PerformList[i].AttackersTarget == this.gameObject)
+                            {
+                                BSM.PerformList[i].AttackersTarget = BSM.EnemysInBattle[Random.Range(0, BSM.EnemysInBattle.Count)];
+                            }
+                        }
+                    }
+                    //change the color to gray / play dead animation
+                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+                    //set alive false
+                    alive = false;
+                    //reset enemy buttons
+                    BSM.EnemyButtons();
+                    //check alive
+                    BSM.BattleStates = BattleStateMachine.PerformAction.CheckAlive;
+                }
                 break;
         }
         void UpgradeProgressBar()
