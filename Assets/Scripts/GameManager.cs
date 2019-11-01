@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public GameObject HeroCharacter;
     private void Awake()
     {
         //check if instance exist
@@ -21,6 +23,11 @@ public class GameManager : MonoBehaviour
         }
         //set this to be not destroyable
         DontDestroyOnLoad(gameObject);
+        if (!GameObject.Find("HeroCharacter"))
+        {
+            GameObject hero = Instantiate(HeroCharacter, Vector3.zero, Quaternion.identity) as GameObject; 
+            hero.name = "HeroCharacter";
+        }
     }
 
 }
