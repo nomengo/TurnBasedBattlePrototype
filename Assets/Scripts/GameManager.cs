@@ -1,12 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    //HERO
     public GameObject HeroCharacter;
+
+    //POSİTİONS
+    public Vector3 nextHeroPosition;
+    public Vector3 lastHeroPosition;//BATTLE
+
+    //SCENES
+    public string sceneToLoad;
+    public string lastScene;//BATTLE
+
     private void Awake()
     {
         //check if instance exist
@@ -28,6 +38,10 @@ public class GameManager : MonoBehaviour
             GameObject hero = Instantiate(HeroCharacter, Vector3.zero, Quaternion.identity) as GameObject; 
             hero.name = "HeroCharacter";
         }
+    }
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(sceneToLoad);
     }
 
 }

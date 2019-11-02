@@ -87,7 +87,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 459658716}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -179,7 +179,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 536721303}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -363,7 +363,7 @@ BoxCollider:
   m_GameObject: {fileID: 9062241064537885907}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -470,9 +470,10 @@ GameObject:
   - component: {fileID: 9062241065710770140}
   - component: {fileID: 9062241065710770141}
   - component: {fileID: 9062241065710770082}
+  - component: {fileID: 9062241065674472607}
   m_Layer: 0
   m_Name: RoadRoller
-  m_TagString: Untagged
+  m_TagString: LeaveTown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,10 +546,25 @@ BoxCollider:
   m_GameObject: {fileID: 9062241065710770083}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9062241065674472607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062241065710770083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0304f57a9668f9942b38a6af1f8425f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: The World
+  spawnPoint: {fileID: 6157971964660568511, guid: f983ad8e3e92824408fa2e7aa91522dd,
+    type: 3}
 --- !u!1 &9062241066117740880
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,9 +665,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9062241066374652516}
+  - component: {fileID: 436094795}
+  - component: {fileID: 436094796}
   m_Layer: 0
   m_Name: Town
-  m_TagString: Untagged
+  m_TagString: EnterTown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -679,6 +697,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &436094795
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062241066374652517}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12, y: 6, z: 11}
+  m_Center: {x: 0, y: 3, z: 0}
+--- !u!114 &436094796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062241066374652517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0304f57a9668f9942b38a6af1f8425f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Town1
+  spawnPoint: {fileID: 5947881032020816003, guid: 47f14b75e3f42e148b89844294b63e89,
+    type: 3}
 --- !u!1 &9062241066452448789
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +812,7 @@ BoxCollider:
   m_GameObject: {fileID: 9062241066452448789}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -858,7 +904,7 @@ BoxCollider:
   m_GameObject: {fileID: 9062241066495359791}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -949,7 +995,7 @@ BoxCollider:
   m_GameObject: {fileID: 9062241066540145416}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1041,7 +1087,7 @@ BoxCollider:
   m_GameObject: {fileID: 9062241066584953330}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

@@ -20,4 +20,21 @@ public class HeroMovement : MonoBehaviour
         Vector3 movement = new Vector3(moveX, 0f, moveZ);
         GetComponent<Rigidbody>().velocity = movement * moveSpeed;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "EnterTown")
+        {
+            CollisionHandler col = other.gameObject.GetComponent<CollisionHandler>();
+            GameManager.instance.nextHeroPosition = col.spawnPoint.transform.position;
+            GameManager.instance.sceneToLoad = col.sceneToLoad;
+            GameManager.instance.LoadNextScene();
+        }
+        if(other.tag == "LeaveTown")
+        {
+            CollisionHandler col = other.gameObject.GetComponent<CollisionHandler>();
+            GameManager.instance.nextHeroPosition = col.spawnPoint.transform.position;
+            GameManager.instance.sceneToLoad = col.sceneToLoad;
+            GameManager.instance.LoadNextScene();
+        }
+    }
 }
