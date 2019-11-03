@@ -6,6 +6,16 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    //CLASS RANDOM MONSTER
+    [System.Serializable]
+    public class RegionData
+    {
+        public string regionName;
+        public int maxAmountEnemys = 4;
+        public List<GameObject> possibleEnemys = new List<GameObject>();
+    }
+    public List<RegionData> Regions = new List<RegionData>();
+
     //HERO
     public GameObject HeroCharacter;
 
@@ -17,6 +27,20 @@ public class GameManager : MonoBehaviour
     public string sceneToLoad;
     public string lastScene;//BATTLE
 
+    //BOOLS
+    public bool isWalking = false;
+    public bool canGetEncounter = false;
+    public bool gotAttacked = false;
+
+    //ENUM
+    public enum GameStates
+    {
+        World_State,
+        Town_State,
+        Battle_State,
+        Idle
+    }
+    public GameStates gameStates;
     private void Awake()
     {
         //check if instance exist
@@ -39,9 +63,52 @@ public class GameManager : MonoBehaviour
             hero.name = "HeroCharacter";
         }
     }
+
+    private void Update()
+    {
+        switch (gameStates)
+        {
+            case (GameStates.World_State):
+                if (isWalking)
+                {
+                    RandomEncounter();
+                }
+                if (gotAttacked)
+                {
+                    gameStates = GameStates.Battle_State;
+                }
+            break;
+            case (GameStates.Town_State):
+
+            break;
+            case (GameStates.Battle_State):
+                //LOAD BATTLE SCENES
+
+                //GO TO IDLE
+            break;
+            case (GameStates.Idle):
+
+            break;
+        }
+    }
     public void LoadNextScene()
     {
         SceneManager.LoadScene(sceneToLoad);
+    }
+    void RandomEncounter()
+    {
+        if(isWalking && canGetEncounter)
+        {
+            if (Random.Range(0, 1000) < 10)
+            {
+                //Debug.Log("Saldırıya uğradım");
+                gotAttacked = true;
+            }
+        }
+    }
+    void StartBattle()
+    {
+
     }
 
 }

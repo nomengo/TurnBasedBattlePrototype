@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 712377210}
   m_Layer: 0
   m_Name: Encounter Region 1
-  m_TagString: Untagged
+  m_TagString: region1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 1152500146}
   m_Layer: 0
   m_Name: 'Encounter Region 2 '
-  m_TagString: Untagged
+  m_TagString: region2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 1343624427}
   m_Layer: 0
   m_Name: 'Encounter Region 1 '
-  m_TagString: Untagged
+  m_TagString: region1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -642,7 +642,7 @@ GameObject:
   - component: {fileID: 1568991170}
   m_Layer: 0
   m_Name: Encounter Region 2
-  m_TagString: Untagged
+  m_TagString: region2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 2022329378}
   m_Layer: 0
   m_Name: Encounter Region 3
-  m_TagString: Untagged
+  m_TagString: region3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
