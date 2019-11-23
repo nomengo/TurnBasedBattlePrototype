@@ -46,13 +46,21 @@ MonoBehaviour:
   Regions:
   - regionName: Encounter Region 1
     maxAmountEnemys: 4
-    possibleEnemys: []
+    BattleScene: BattleScene
+    possibleEnemys:
+    - {fileID: 421824447816947390, guid: ef85d2b13a97f2643b4f9cd3ee104b05, type: 3}
   - regionName: Encounter Region 2
     maxAmountEnemys: 4
-    possibleEnemys: []
+    BattleScene: BattleScene
+    possibleEnemys:
+    - {fileID: 1342908608464367454, guid: 490b5499e733448428c4b126cf7157da, type: 3}
   - regionName: Encounter Region 3
     maxAmountEnemys: 4
-    possibleEnemys: []
+    BattleScene: BattleScene
+    possibleEnemys:
+    - {fileID: 421824447816947390, guid: ef85d2b13a97f2643b4f9cd3ee104b05, type: 3}
+    - {fileID: 1342908608464367454, guid: 490b5499e733448428c4b126cf7157da, type: 3}
+  curRegion: 0
   HeroCharacter: {fileID: 621914250364369682, guid: bcdb6bc275956b94a8e5cdfa832dbf5e,
     type: 3}
   nextHeroPosition: {x: 0, y: 0, z: 0}
@@ -62,4 +70,6 @@ MonoBehaviour:
   isWalking: 0
   canGetEncounter: 0
   gotAttacked: 0
+  enemysToBattle: []
+  enemyAmount: 0
   gameStates: 0

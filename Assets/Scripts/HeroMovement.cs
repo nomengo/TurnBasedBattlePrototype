@@ -49,6 +49,18 @@ public class HeroMovement : MonoBehaviour
             GameManager.instance.sceneToLoad = col.sceneToLoad;
             GameManager.instance.LoadNextScene();
         }
+        if(other.tag == "region1")
+        {
+            GameManager.instance.curRegion = 0;
+        }
+        if (other.tag == "region2")
+        {
+            GameManager.instance.curRegion = 1;
+        }
+        if (other.tag == "region3")
+        {
+            GameManager.instance.curRegion = 2;
+        }
     }
     private void OnTriggerStay(Collider other)
     {
